@@ -6,7 +6,7 @@ let n = 10,
 
 function handler(event) {
     let parent = event.target.parentElement.cloneNode(true);
-    let height = (event.target.parentElement.clientHeight + 20);
+    let height = (event.target.parentElement.clientHeight + 20 + 125);
     let width = 165;
     if (newWIN == null || newWIN.closed) {
         createWIN(width, height);
@@ -20,6 +20,10 @@ function handler(event) {
         else newWIN.resizeTo(width + 20, height + 65);
     }
     let body = document.createElement("body");
+    let info = document.createElement("kbd");
+    info.textContent = "id=" + parent.id + "\nnameTag=" + parent.nodeName.toLowerCase() + "\nlength="
+        + parent.getElementsByTagName("kbd").length;
+    parent.insertBefore(info, parent.firstChild);
 	body.appendChild(parent);
     newWIN.document.body.innerHTML = body.innerHTML;
 }
