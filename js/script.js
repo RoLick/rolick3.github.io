@@ -41,7 +41,7 @@ function createWIN(event,  width, height) {
         "\n\tpadding: 30px;" +
         "\n\twidth: 70px;" +
         "\n\tbackground-color: #f2f4f4;" +
-        "\n}"
+        "\n}";
     head.appendChild(style);
 }
 
@@ -61,7 +61,8 @@ for (let i = 0; i < n; i++) {
     elem = document.getElementById(i);
     let listTagName_kbd = elem.getElementsByTagName("kbd")
     for (let j = 0; j < listTagName_kbd.length; j++) {
-        listTagName_kbd[j].addEventListener("click", handler);
+		if(listTagName_kbd[j].addEventListener) listTagName_kbd[j].addEventListener("click", handler);
+		else listTagName_kbd[j].attachEvent("onclick", handler);
     }
 }
 
@@ -71,4 +72,4 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
 }
 
-window.onbeforeunload = () => { if (newWIN != null && !newWIN.closed) newWIN.close(); }
+window.onbeforeunload = function() { if (newWIN != null && !newWIN.closed) newWIN.close(); }
