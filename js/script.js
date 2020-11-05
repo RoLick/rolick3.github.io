@@ -9,13 +9,13 @@ function handler(event) {
     let height = (event.target.parentElement.clientHeight + 20);
     let width = 165;
     if (newWIN == null || newWIN.closed) {
-        createWIN(event, width, height);
+        createWIN(width, height);
     }
     else {
         newWIN.focus();
         if(Object.prototype.toString.call(newWIN) != "[object Window]") {
             newWIN.close();
-            createWIN(event, width, height);
+            createWIN(width, height);
         }
         else newWIN.resizeTo(width + 20, height + 65);
     }
@@ -24,12 +24,12 @@ function handler(event) {
     newWIN.document.body.innerHTML = body.innerHTML;
 }
 
-function createWIN(event,  width, height) {
-    newWIN = window.open("about:blank", "lab5", "width=" + width + ",height=" + height.toString()
+function createWIN(width, height) {
+    newWIN = window.open("about:blank", "lab5", "width=" + width.toString() + ",height=" + height.toString()
         + "menubar=no,resizable=no,status=no,location=no");
     let head = document.createElement("head");
     let style = document.createElement("style");
-    style.textContent =
+    style.textContent = 
         "div {" +
         "\n\tdisplay:flex;" +
 		"\n\talign-items: center;" +
@@ -57,7 +57,6 @@ for (let i = 0; i < n; i++) {
     }
     root.appendChild(div);
 }
-
 for (let i = 0; i < n; i++) {
     elem = document.getElementById(i);
     let listTagName_kbd = elem.getElementsByTagName("kbd")
@@ -68,8 +67,6 @@ for (let i = 0; i < n; i++) {
 }
 
 function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
 }
 
