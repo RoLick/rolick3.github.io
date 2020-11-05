@@ -19,20 +19,20 @@ function handler(event) {
         }
         else newWIN.resizeTo(width + 20, height + 65);
     }
-    let body = newWIN.document.body;
-    while(body.hasChildNodes()) body.removeChild(body.firstChild);
-    body.appendChild(parent);
-    console.log();
+    let body = document.createElement("body");
+	body.appendChild(parent);
+    newWIN.document.body.innerHTML = body.innerHTML;
 }
 
 function createWIN(event,  width, height) {
     newWIN = window.open("about:blank", "lab5", "width=" + width + ",height=" + height.toString()
         + "menubar=no,resizable=no,status=no,location=no");
-    let head = newWIN.document.head;
+    let head = document.createElement("head");
     let style = document.createElement("style");
     style.textContent =
         "div {" +
         "\n\tdisplay:flex;" +
+		"\n\talign-items: center;" +
         "\n\tflex-direction: column;" +
         "\n}" +
         "\nkbd {" +
@@ -43,6 +43,7 @@ function createWIN(event,  width, height) {
         "\n\tbackground-color: #f2f4f4;" +
         "\n}";
     head.appendChild(style);
+	newWIN.document.head.innerHTML = head.innerHTML;
 }
 
 for (let i = 0; i < n; i++) {
